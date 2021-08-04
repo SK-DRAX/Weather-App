@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchButton from "./SearchButton";
+import WeatherDet from "./WeatherDet";
 
 function Card() {
+  const [location, setLocation] = useState("");
+  function itemSaved(event) {
+    const newItemValue = event.target.value;
+    setLocation(newItemValue);
+  }
+  const [createLocation, setCreateLocation] = useState("mumbai");
+  function displayWeather() {
+    setCreateLocation(location);
+    setLocation("");
+  }
+
   return (
     <div className="card">
       <div className="search">
-        <input type="text" className="search-bar" />
-        <SearchButton />
+        <input
+          onChange={itemSaved}
+          type="text"
+          value={location}
+          className="search-bar"
+          placeholder="City Name"
+        />
+        <button onClick={displayWeather} className="search-icon">
+          <SearchButton value={createLocation} />
+        </button>
       </div>
       <div className="info">
-        <h2>Mumbai</h2>
-        <h1>40 °C</h1>
+        <WeatherDet place={createLocation} />
       </div>
     </div>
   );
