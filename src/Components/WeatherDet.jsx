@@ -8,8 +8,10 @@ function WeatherDet(props) {
   useEffect(() => {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-        props.place +
-        "&units=metric&appid=daa2f095b0e458fd463d236f75e52a87"
+        props.place[0] +
+        "&units=" +
+        props.place[1] +
+        "&appid=daa2f095b0e458fd463d236f75e52a87"
     )
       .then((res) => res.json())
       .then((result) => {
@@ -18,10 +20,14 @@ function WeatherDet(props) {
       });
   }, [props.place]);
   const { name, main } = items;
+  var unimet = " °C";
+  if (props.place[1] === "imperial") {
+    unimet = " °F";
+  }
   return (
     <div>
       <h2>{name}</h2>
-      <h1>{main?.temp} °C</h1>
+      <h1>{main?.temp + unimet}</h1>
     </div>
   );
 }

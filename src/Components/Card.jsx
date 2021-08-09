@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchButton from "./SearchButton";
 import WeatherDet from "./WeatherDet";
+import DropDown from "./DropDown";
 
 function Card() {
   const [location, setLocation] = useState("");
@@ -8,9 +9,17 @@ function Card() {
     const newItemValue = event.target.value;
     setLocation(newItemValue);
   }
-  const [createLocation, setCreateLocation] = useState("mumbai");
+
+  const [unit, setUnit] = useState("metric");
+  function settingUnit(unit) {
+    setUnit(unit);
+  }
+
+  const [createLocation, setCreateLocation] = useState(["mumbai", "metric"]);
   function displayWeather() {
-    setCreateLocation(location);
+    setCreateLocation(() => {
+      return [location, unit];
+    });
     setLocation("");
   }
 
@@ -28,6 +37,7 @@ function Card() {
           <SearchButton value={createLocation} />
         </button>
       </div>
+      <DropDown getUnit={settingUnit} />
       <div className="info">
         <WeatherDet place={createLocation} />
       </div>
