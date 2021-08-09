@@ -33,11 +33,11 @@ function Card() {
           className="search-bar"
           placeholder="City Name"
         />
+        <DropDown getUnit={settingUnit} />
         <button onClick={displayWeather} className="search-icon">
           <SearchButton value={createLocation} />
         </button>
       </div>
-      <DropDown getUnit={settingUnit} />
       <div className="info">
         <WeatherDet place={createLocation} />
       </div>
