@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function WeatherDet(props) {
-  // var fullDetails ="api.openweathermap.org/data/2.5/weather?q=Mumbai&units=metric&appid=daa2f095b0e458fd463d236f75e52a87"
 
   const [items, setItems] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -11,7 +10,7 @@ function WeatherDet(props) {
         props.place[0] +
         "&units=" +
         props.place[1] +
-        "&appid=daa2f095b0e458fd463d236f75e52a87"
+        "&appid={Enter your api key here}"
     )
       .then((res) => res.json())
       .then((result) => {
